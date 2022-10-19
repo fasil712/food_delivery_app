@@ -13,8 +13,8 @@ class CartConroller extends GetxController {
 
   void addItem(ProductModel productModel, int quantity) {
     var totalQuantity = 0;
-    if (_items.containsKey(productModel.id!)) {
-      _items.update(productModel.id!, (value) {
+    if (_items.containsKey(productModel.id)) {
+      _items.update(productModel.id, (value) {
         totalQuantity = value.quantity! + quantity;
         return CartModel(
             id: value.id,
@@ -30,7 +30,7 @@ class CartConroller extends GetxController {
       }
     } else {
       if (quantity > 0) {
-        _items.putIfAbsent(productModel.id!, () {
+        _items.putIfAbsent(productModel.id, () {
           _items.forEach((key, value) {});
           return CartModel(
               id: productModel.id,
@@ -44,7 +44,7 @@ class CartConroller extends GetxController {
       } else {
         Get.snackbar(
           "Item count",
-          "You should at least add an item in the cart!",
+          "You should at least add an item in the cart",
           backgroundColor: AppColors.mainColor,
           colorText: Colors.white,
         );

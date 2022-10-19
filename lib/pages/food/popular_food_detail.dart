@@ -37,7 +37,7 @@ class PopularFoodDetail extends StatelessWidget {
                       fit: BoxFit.cover,
                       image: NetworkImage(ApiConstants.BASE_URL +
                           ApiConstants.UPLOAD_URL +
-                          product.img!))),
+                          product.img))),
             )),
         Positioned(
             top: Dimensions.height45,
@@ -104,7 +104,7 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppColumn(text: product.name!),
+                  AppColumn(text: product.name),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
@@ -114,7 +114,7 @@ class PopularFoodDetail extends StatelessWidget {
                   ),
                   Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandaleTextWidget(text: product.desc!),
+                      child: ExpandaleTextWidget(text: product.description),
                     ),
                   )
                 ],
@@ -183,7 +183,7 @@ class PopularFoodDetail extends StatelessWidget {
                     left: Dimensions.width20,
                     right: Dimensions.width20),
                 child: BigText(
-                  text: "\$${product.price!} | Add to cart",
+                  text: "\$${product.price} | Add to cart",
                   color: Colors.white,
                 ),
                 decoration: BoxDecoration(

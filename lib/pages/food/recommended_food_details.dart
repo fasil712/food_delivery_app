@@ -81,7 +81,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   width: double.maxFinite,
                   child: Center(
                     child: BigText(
-                      text: product.name!,
+                      text: product.name,
                       size: Dimensions.font26,
                     ),
                   )),
@@ -101,7 +101,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.only(
                         left: Dimensions.width20, right: Dimensions.width20),
-                    child: ExpandaleTextWidget(text: product.desc!)),
+                    child: ExpandaleTextWidget(text: product.description)),
               ],
             ),
           )
@@ -134,7 +134,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     ),
                   ),
                   BigText(
-                    text: "\$${product.price!}  X ${controller.inCartItems}",
+                    text: "\$${product.price}  X ${controller.inCartItems}",
                     color: AppColors.mainBlackColor,
                     size: Dimensions.font26,
                   ),
@@ -192,7 +192,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                             left: Dimensions.width20,
                             right: Dimensions.width20),
                         child: BigText(
-                          text: "\$${product.price!} | Add to cart",
+                          text: "\$${product.price} | Add to cart",
                           color: Colors.white,
                         ),
                         decoration: BoxDecoration(
