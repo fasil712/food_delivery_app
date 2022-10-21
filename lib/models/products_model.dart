@@ -76,7 +76,6 @@ class Product {
   late final int typeId;
   late final int offset;
   late final List<ProductModel> products;
-  //   late List<ProductModel> _productModel;
   List<ProductModel> get productModel => products;
 
   Product.fromJson(Map<String, dynamic> json) {

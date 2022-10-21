@@ -46,7 +46,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                               top: 0,
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.to(() => const CartPage());
+                                  Get.toNamed(RouteHelper.getCartPage());
                                 },
                                 child: const AppIcon(
                                   icon: Icons.circle,
