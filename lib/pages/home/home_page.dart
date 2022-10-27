@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   List pages = [
-    MainFoodPage(),
+    const MainFoodPage(),
     Container(
       child: Center(
         child: Text("Next page"),

@@ -42,15 +42,13 @@ class _SplashScreenState extends State<SplashScreen>
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ScaleTransition(
             scale: animation,
-            child: Center(
-                child: Image.asset(
-              "assets/logo 1.png",
-              width: Dimensions.splashImg,
+            child: const Center(
+                child:  Text(
+              "Logo one",
             ))),
-        Center(
-            child: Image.asset(
-          "assets/logo 2.png",
-          width: Dimensions.splashImg,
+        const Center(
+            child: Text(
+          "Logo Two",
         )),
       ]),
     );
