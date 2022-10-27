@@ -11,6 +11,8 @@ class CartConroller extends GetxController {
   final Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
+  List<CartModel> storageItems = [];
+
   void addItem(ProductModel productModel, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(productModel.id)) {
@@ -23,7 +25,8 @@ class CartConroller extends GetxController {
             img: value.img,
             quantity: value.quantity! + quantity,
             isExist: true,
-            time: DateTime.now().toString());
+            time: DateTime.now().toString(),
+            product: productModel);
       });
       if (totalQuantity <= 0) {
         _items.remove(productModel.id);
@@ -39,7 +42,8 @@ class CartConroller extends GetxController {
               img: productModel.img,
               quantity: quantity,
               isExist: true,
-              time: DateTime.now().toString());
+              time: DateTime.now().toString(),
+              product: productModel);
         });
       } else {
         Get.snackbar(
@@ -50,6 +54,8 @@ class CartConroller extends GetxController {
         );
       }
     }
+    cartRepo.addToCartList(getItems);
+    update();
   }
 
   exitInCart(ProductModel productModel) {
@@ -83,5 +89,25 @@ class CartConroller extends GetxController {
     return _items.entries.map((e) {
       return e.value;
     }).toList();
+  }
+
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+    return 0;
+  }
+
+  List<CartModel> getCartData() {
+    setCart = cartRepo.getCartList();
+    return storageItems;
+  }
+
+  set setCart(List<CartModel> items) {
+    storageItems = items;
+    for (var i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].product!.id, () => storageItems[i]);
+    }
   }
 }

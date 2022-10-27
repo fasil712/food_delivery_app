@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/popular_product_conroller.dart';
+import 'package:food_delivery_app/controllers/recommended_product_controller.dart';
+import 'package:food_delivery_app/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'package:food_delivery_app/controllers/cart_controller.dart';
 import 'package:food_delivery_app/pages/home/main_food_page.dart';
@@ -34,7 +37,7 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => const MainFoodPage());
+                    Get.toNamed(RouteHelper.getInitial());
                   },
                   child: AppIcon(
                     icon: Icons.home,
@@ -63,29 +66,50 @@ class CartPage extends StatelessWidget {
                   context: context,
                   removeTop: true,
                   child: GetBuilder<CartConroller>(builder: (cartConroller) {
+                    var cartList = cartConroller.getItems;
                     return ListView.builder(
-                        itemCount: cartConroller.getItems.length,
+                        itemCount: cartList.length,
                         itemBuilder: (context, index) {
                           return Container(
                             width: double.maxFinite,
                             height: Dimensions.height20 * 5,
                             child: Row(
                               children: [
-                                Container(
-                                  width: Dimensions.height20 * 5,
-                                  height: Dimensions.height20 * 5,
-                                  margin: EdgeInsets.only(
-                                      bottom: Dimensions.height10),
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                              ApiConstants.BASE_URL +
-                                                  ApiConstants.UPLOAD_URL +
-                                                  cartConroller
-                                                      .getItems[index].img!)),
-                                      borderRadius: BorderRadius.circular(
-                                          Dimensions.radius20)),
+                                GestureDetector(
+                                  onTap: () {
+                                    var popularIndex =
+                                        Get.find<PopularProductConroller>()
+                                            .popularProductList
+                                            .indexOf(cartList[index].product!);
+                                    if (popularIndex >= 0) {
+                                      Get.toNamed(RouteHelper.getPopularFood(
+                                          popularIndex, "cartpage"));
+                                    } else {
+                                      var recommendedIndex = Get.find<
+                                              RecommendedProductConroller>()
+                                          .recommendedProductList
+                                          .indexOf(cartList[index].product!);
+                                      Get.toNamed(
+                                          RouteHelper.getRecommendedFood(
+                                              recommendedIndex, "cartpage"));
+                                    }
+                                  },
+                                  child: Container(
+                                    width: Dimensions.height20 * 5,
+                                    height: Dimensions.height20 * 5,
+                                    margin: EdgeInsets.only(
+                                        bottom: Dimensions.height10),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(
+                                                ApiConstants.BASE_URL +
+                                                    ApiConstants.UPLOAD_URL +
+                                                    cartConroller
+                                                        .getItems[index].img!)),
+                                        borderRadius: BorderRadius.circular(
+                                            Dimensions.radius20)),
+                                  ),
                                 ),
                                 SizedBox(
                                   width: Dimensions.width10,
@@ -130,8 +154,10 @@ class CartPage extends StatelessWidget {
                                               children: [
                                                 GestureDetector(
                                                   onTap: () {
-                                                    // popularProduct
-                                                    //     .setQuantity(false);
+                                                    cartConroller.addItem(
+                                                        cartList[index]
+                                                            .product!,
+                                                        -1);
                                                   },
                                                   child: const Icon(
                                                     Icons.remove,
@@ -141,14 +167,19 @@ class CartPage extends StatelessWidget {
                                                 SizedBox(
                                                     width:
                                                         Dimensions.width10 / 2),
-                                                BigText(text: "0"),
+                                                BigText(
+                                                    text: cartList[index]
+                                                        .quantity
+                                                        .toString()),
                                                 SizedBox(
                                                     width:
                                                         Dimensions.width10 / 2),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    // popularProduct
-                                                    //     .setQuantity(true);
+                                                    cartConroller.addItem(
+                                                        cartList[index]
+                                                            .product!,
+                                                        1);
                                                   },
                                                   child: const Icon(
                                                     Icons.add,
@@ -170,6 +201,60 @@ class CartPage extends StatelessWidget {
                   }),
                 )))
       ]),
+      bottomNavigationBar: GetBuilder<CartConroller>(builder: (cartConroller) {
+        return Container(
+          height: Dimensions.bottomHeightBar,
+          decoration: BoxDecoration(
+              color: AppColors.buttonBackgroundColor,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Dimensions.radius20 * 2),
+                  topRight: Radius.circular(Dimensions.radius20 * 2))),
+          padding: EdgeInsets.only(
+              top: Dimensions.height30,
+              bottom: Dimensions.height30,
+              left: Dimensions.width20,
+              right: Dimensions.width20),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Container(
+              padding: EdgeInsets.only(
+                  top: Dimensions.height20,
+                  bottom: Dimensions.height20,
+                  left: Dimensions.width20,
+                  right: Dimensions.width20),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(Dimensions.radius20)),
+              child: Row(
+                children: [
+                  SizedBox(width: Dimensions.width10 / 2),
+                  BigText(text: "\$${cartConroller.totalAmount}"),
+                  SizedBox(width: Dimensions.width10 / 2),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                //cartConroller.addItem(product);
+              },
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: Dimensions.height20,
+                    bottom: Dimensions.height20,
+                    left: Dimensions.width20,
+                    right: Dimensions.width20),
+                decoration: BoxDecoration(
+                    color: AppColors.mainColor,
+                    borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                child: BigText(
+                  text: "Check Out",
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ]),
+        );
+      }),
     );
   }
 }

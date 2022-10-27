@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/cart_controller.dart';
 import 'package:get/get.dart';
 import 'package:food_delivery_app/controllers/popular_product_conroller.dart';
 import 'package:food_delivery_app/controllers/recommended_product_controller.dart';
@@ -21,14 +22,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductConroller>().getPopularProductList();
-    Get.find<RecommendedProductConroller>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Food Delivery App",
-      home: const MainFoodPage(),
-      initialRoute: RouteHelper.initial,
-      getPages: RouteHelper.routes,
-    );
+    Get.find<CartConroller>().getCartData();
+    return GetBuilder<PopularProductConroller>(builder: (_) {
+      return GetBuilder<RecommendedProductConroller>(builder: (_) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "Food Delivery App",
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes,
+        );
+      });
+    });
   }
 }
