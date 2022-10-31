@@ -37,8 +37,8 @@ class PopularFoodDetail extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(ApiConstants.BASE_URL +
-                          ApiConstants.UPLOAD_URL +
+                      image: NetworkImage(AppConstants.BASE_URL +
+                          AppConstants.UPLOAD_URL +
                           product.img))),
             )),
         Positioned(

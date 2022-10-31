@@ -4,7 +4,6 @@ import 'package:food_delivery_app/controllers/recommended_product_controller.dar
 import 'package:food_delivery_app/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'package:food_delivery_app/controllers/cart_controller.dart';
-import 'package:food_delivery_app/pages/home/main_food_page.dart';
 import 'package:food_delivery_app/utilities/app_constants.dart';
 import 'package:food_delivery_app/utilities/colors.dart';
 import 'package:food_delivery_app/utilities/dimensions.dart';
@@ -103,8 +102,8 @@ class CartPage extends StatelessWidget {
                                         image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: NetworkImage(
-                                                ApiConstants.BASE_URL +
-                                                    ApiConstants.UPLOAD_URL +
+                                                AppConstants.BASE_URL +
+                                                    AppConstants.UPLOAD_URL +
                                                     cartConroller
                                                         .getItems[index].img!)),
                                         borderRadius: BorderRadius.circular(

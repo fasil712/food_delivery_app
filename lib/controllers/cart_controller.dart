@@ -8,7 +8,7 @@ import 'package:food_delivery_app/utilities/colors.dart';
 class CartConroller extends GetxController {
   final CartRepo cartRepo;
   CartConroller({required this.cartRepo});
-  final Map<int, CartModel> _items = {};
+  Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
   List<CartModel> storageItems = [];
@@ -113,5 +113,15 @@ class CartConroller extends GetxController {
 
   void addHistory() {
     cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
+  }
+
+  List<CartModel> getCartHistoryList() {
+    return cartRepo.getCartHistoryList();
   }
 }

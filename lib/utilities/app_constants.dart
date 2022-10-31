@@ -1,4 +1,4 @@
-class ApiConstants {
+class AppConstants {
   static const String APP_NAME = "DBFood";
   static const int APP_VERSTION = 1;
   static const String BASE_URL = "http://192.168.43.62:3000";

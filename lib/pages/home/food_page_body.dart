@@ -126,8 +126,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
-                                          ApiConstants.BASE_URL +
-                                              ApiConstants.UPLOAD_URL +
+                                          AppConstants.BASE_URL +
+                                              AppConstants.UPLOAD_URL +
                                               recommendedProduct
                                                   .recommendedProductList[index]
                                                   .img))),
@@ -243,8 +243,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       : const Color.fromARGB(246, 156, 83, 79),
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(ApiConstants.BASE_URL +
-                          ApiConstants.UPLOAD_URL +
+                      image: NetworkImage(AppConstants.BASE_URL +
+                          AppConstants.UPLOAD_URL +
                           popularProductModel.img))),
             ),
           ),
