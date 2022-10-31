@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:food_delivery_app/controllers/cart_controller.dart';
 import 'package:food_delivery_app/controllers/popular_product_conroller.dart';
 import 'package:food_delivery_app/pages/home/main_food_page.dart';
-import 'package:food_delivery_app/utilities/api_constants.dart';
+import 'package:food_delivery_app/utilities/app_constants.dart';
 import 'package:food_delivery_app/utilities/colors.dart';
 import 'package:food_delivery_app/utilities/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_column.dart';

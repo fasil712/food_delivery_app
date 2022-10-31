@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:food_delivery_app/models/cart_model.dart';
-import 'package:food_delivery_app/utilities/api_constants.dart';
+import 'package:food_delivery_app/utilities/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartRepo {
@@ -9,6 +9,8 @@ class CartRepo {
   CartRepo({required this.sharedPreferences});
 
   List<String> cart = [];
+  List<String> cartHistory = [];
+
   void addToCartList(List<CartModel> cartList) {
     cart = [];
     cartList.forEach((element) {
@@ -26,7 +28,17 @@ class CartRepo {
     }
     List<CartModel> cartList = [];
 
-    carts.forEach((element) => CartModel.fromJson(jsonDecode(element)));
+    carts.forEach(
+        (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
     return cartList;
+  }
+
+  void addToCartHistoryList() {
+    for (int i = 0; i < cart.length; i++) {
+      
+      cartHistory.add(cart[i]);
+    }
+    sharedPreferences.setStringList(
+        ApiConstants.CART_HISTORY_LIST, cartHistory);
   }
 }

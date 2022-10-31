@@ -6,7 +6,7 @@ import 'package:food_delivery_app/data/api/api_client.dart';
 import 'package:food_delivery_app/data/repository/cart_repo.dart';
 import 'package:food_delivery_app/data/repository/popular_product_repo.dart';
 import 'package:food_delivery_app/data/repository/recommended_product_repo.dart';
-import 'package:food_delivery_app/utilities/api_constants.dart';
+import 'package:food_delivery_app/utilities/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> init() async {

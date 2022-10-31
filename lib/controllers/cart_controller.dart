@@ -110,4 +110,8 @@ class CartConroller extends GetxController {
       _items.putIfAbsent(storageItems[i].product!.id, () => storageItems[i]);
     }
   }
+
+  void addHistory() {
+    cartRepo.addToCartHistoryList();
+  }
 }

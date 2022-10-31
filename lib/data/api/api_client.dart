@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:food_delivery_app/utilities/api_constants.dart';
+import 'package:food_delivery_app/utilities/app_constants.dart';
 
 class ApiClient extends GetConnect implements GetxService {
   late String token;
