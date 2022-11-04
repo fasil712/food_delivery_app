@@ -15,11 +15,7 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   List pages = [
     const MainFoodPage(),
-    Container(
-      child: Center(
-        child: Text("Next page"),
-      ),
-    ),
+    const Center(child: Text("Next page")),
     const CartHistory(),
     const AccountPage()
   ];

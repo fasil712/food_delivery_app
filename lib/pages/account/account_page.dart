@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:food_delivery_app/controllers/auth_controller.dart';
+import 'package:food_delivery_app/controllers/cart_controller.dart';
+import 'package:food_delivery_app/routes/route_helper.dart';
 import 'package:food_delivery_app/utilities/colors.dart';
 import 'package:food_delivery_app/utilities/dimensions.dart';
 import 'package:food_delivery_app/widgets/account_widget.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -95,9 +99,30 @@ class AccountPage extends StatelessWidget {
                           size: Dimensions.height10 * 5,
                         ),
                         bigText: BigText(
-                          text: "Something",
+                          text: "Messages",
                         )),
-                    //SizedBox(height: Dimensions.height20),
+                    SizedBox(height: Dimensions.height20),
+                    //Logout
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartConroller>().clear();
+                          Get.find<CartConroller>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        }
+                      },
+                      child: AccountWidget(
+                          appIcon: AppIcon(
+                            icon: Icons.logout,
+                            backgroundColor: Colors.red,
+                            iconSize: Dimensions.height10 * 5 / 2,
+                            size: Dimensions.height10 * 5,
+                          ),
+                          bigText: BigText(
+                            text: "Logout",
+                          )),
+                    ),
                   ],
                 ),
               ),

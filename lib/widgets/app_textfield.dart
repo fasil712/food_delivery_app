@@ -6,17 +6,18 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textConroller;
   final String hintText;
   final IconData icon;
+  bool isObsecure;
 
-  const AppTextField(
+  AppTextField(
       {Key? key,
       required this.textConroller,
       required this.hintText,
-      required this.icon})
+      required this.icon,
+      this.isObsecure = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
     return Container(
       margin: EdgeInsets.only(
           left: Dimensions.height20, right: Dimensions.height20),
@@ -32,6 +33,7 @@ class AppTextField extends StatelessWidget {
           ]),
       child: TextField(
         controller: textConroller,
+        obscureText: isObsecure ? true : false,
         decoration: InputDecoration(
             hintText: hintText,
             prefixIcon: Icon(
@@ -40,11 +42,11 @@ class AppTextField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
-              borderSide: BorderSide(color: Colors.white, width: 1.0),
+              borderSide: const BorderSide(color: Colors.white, width: 1.0),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
-              borderSide: BorderSide(color: Colors.white, width: 1.0),
+              borderSide: const BorderSide(color: Colors.white, width: 1.0),
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.radius30),

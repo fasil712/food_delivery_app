@@ -64,11 +64,18 @@ class CartRepo {
     // print("The length of history list is " +
     //     getCartHistoryList().length.toString());
     for (int i = 0; i < getCartHistoryList().length; i++) {
-   //   print("The time for order is " + getCartHistoryList()[i].time.toString());
+      //   print("The time for order is " + getCartHistoryList()[i].time.toString());
     }
   }
 
   void removeCart() {
+    cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
+  }
+
+  void clearCartHistory() {
+    removeCart();
+    cartHistory = [];
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
   }
 }

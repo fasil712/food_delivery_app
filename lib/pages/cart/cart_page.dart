@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/base/no_data.dart';
+import 'package:food_delivery_app/controllers/auth_controller.dart';
 import 'package:food_delivery_app/controllers/popular_product_conroller.dart';
 import 'package:food_delivery_app/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_app/routes/route_helper.dart';
@@ -243,45 +244,54 @@ class CartPage extends StatelessWidget {
               bottom: Dimensions.height30,
               left: Dimensions.width20,
               right: Dimensions.width20),
-          child: cartConroller.getItems.isNotEmpty?
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Container(
-              padding: EdgeInsets.only(
-                  top: Dimensions.height20,
-                  bottom: Dimensions.height20,
-                  left: Dimensions.width20,
-                  right: Dimensions.width20),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(Dimensions.radius20)),
-              child: Row(
-                children: [
-                  SizedBox(width: Dimensions.width10 / 2),
-                  BigText(text: "\$${cartConroller.totalAmount}"),
-                  SizedBox(width: Dimensions.width10 / 2),
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                cartConroller.addHistory();
-              },
-              child: Container(
-                padding: EdgeInsets.only(
-                    top: Dimensions.height20,
-                    bottom: Dimensions.height20,
-                    left: Dimensions.width20,
-                    right: Dimensions.width20),
-                decoration: BoxDecoration(
-                    color: AppColors.mainColor,
-                    borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                child: BigText(
-                  text: "Check Out",
-                  color: Colors.white,
-                ),
-              ),
-            )
-          ]):Container(),
+          child: cartConroller.getItems.isNotEmpty
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                      Container(
+                        padding: EdgeInsets.only(
+                            top: Dimensions.height20,
+                            bottom: Dimensions.height20,
+                            left: Dimensions.width20,
+                            right: Dimensions.width20),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20)),
+                        child: Row(
+                          children: [
+                            SizedBox(width: Dimensions.width10 / 2),
+                            BigText(text: "\$${cartConroller.totalAmount}"),
+                            SizedBox(width: Dimensions.width10 / 2),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (Get.find<AuthController>().userLoggedIn()) {
+                            cartConroller.addHistory();
+                          } else {
+                            Get.toNamed(RouteHelper.getSignInPage());
+                          }
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              top: Dimensions.height20,
+                              bottom: Dimensions.height20,
+                              left: Dimensions.width20,
+                              right: Dimensions.width20),
+                          decoration: BoxDecoration(
+                              color: AppColors.mainColor,
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius20)),
+                          child: BigText(
+                            text: "Check Out",
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                    ])
+              : Container(),
         );
       }),
     );
