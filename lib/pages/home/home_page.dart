@@ -40,10 +40,10 @@ class _HomePageState extends State<HomePage> {
           currentIndex: selectedIndex,
           onTap: onTapNav,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined)),
-            BottomNavigationBarItem(icon: Icon(Icons.archive_outlined)),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined)),
-            BottomNavigationBarItem(icon: Icon(Icons.person_outlined))
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.archive_outlined), label: "Archive"),
+            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: "History"),
+            BottomNavigationBarItem(icon: Icon(Icons.person_outlined), label: "Account")
           ]),
     );
   }
