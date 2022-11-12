@@ -73,7 +73,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   const CircleAvatar(
                     radius: 80,
-                    backgroundImage: AssetImage("assets/images/logo_part_1.jpg"),
+                    backgroundImage: AssetImage("assets/image/logo_part_1.jpg"),
                   ),
                   //Email
                   AppTextField(

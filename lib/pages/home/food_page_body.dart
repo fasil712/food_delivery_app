@@ -130,7 +130,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                               AppConstants.UPLOAD_URL +
                                               recommendedProduct
                                                   .recommendedProductList[index]
-                                                  .img))),
+                                                  .img!))),
                             ),
                             Expanded(
                               child: Container(
@@ -154,7 +154,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                       BigText(
                                           text: recommendedProduct
                                               .recommendedProductList[index]
-                                              .name),
+                                              .name!),
                                       SizedBox(
                                         height: Dimensions.height10,
                                       ),
@@ -245,7 +245,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       fit: BoxFit.cover,
                       image: NetworkImage(AppConstants.BASE_URL +
                           AppConstants.UPLOAD_URL +
-                          popularProductModel.img))),
+                          popularProductModel.img!))),
             ),
           ),
           Align(
@@ -271,7 +271,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               child: Container(
                 padding: EdgeInsets.only(
                     top: Dimensions.height15, left: 15, right: 15),
-                child: AppColumn(text: popularProductModel.name),
+                child: AppColumn(text: popularProductModel.name!),
               ),
             ),
           ),

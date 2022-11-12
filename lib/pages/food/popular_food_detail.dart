@@ -39,7 +39,7 @@ class PopularFoodDetail extends StatelessWidget {
                       fit: BoxFit.cover,
                       image: NetworkImage(AppConstants.BASE_URL +
                           AppConstants.UPLOAD_URL +
-                          product.img))),
+                          product.img!))),
             )),
         Positioned(
             top: Dimensions.height45,
@@ -112,7 +112,7 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppColumn(text: product.name),
+                  AppColumn(text: product.name!),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
@@ -122,7 +122,7 @@ class PopularFoodDetail extends StatelessWidget {
                   ),
                   Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandaleTextWidget(text: product.description),
+                      child: ExpandaleTextWidget(text: product.description!),
                     ),
                   )
                 ],

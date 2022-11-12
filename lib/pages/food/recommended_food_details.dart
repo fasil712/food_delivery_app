@@ -89,7 +89,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   width: double.maxFinite,
                   child: Center(
                     child: BigText(
-                      text: product.name,
+                      text: product.name!,
                       size: Dimensions.font26,
                     ),
                   )),
@@ -109,7 +109,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.only(
                         left: Dimensions.width20, right: Dimensions.width20),
-                    child: ExpandaleTextWidget(text: product.description)),
+                    child: ExpandaleTextWidget(text: product.description!)),
               ],
             ),
           )

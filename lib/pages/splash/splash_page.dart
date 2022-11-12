@@ -42,12 +42,12 @@ class _SplashScreenState extends State<SplashScreen>
         ScaleTransition(
             scale: animation,
             child: const Center(
-                child:  Text(
-              "Logo one",
+                child: Image(
+              image: AssetImage("assets/image/logo part 1.png"),
             ))),
         const Center(
-            child: Text(
-          "Logo Two",
+            child: Image(
+          image: AssetImage("assets/image/logo part 2.png"),
         )),
       ]),
     );
