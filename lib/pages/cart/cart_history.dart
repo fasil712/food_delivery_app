@@ -12,6 +12,7 @@ import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/big_text.dart';
 import 'package:food_delivery_app/widgets/small_text.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class CartHistory extends StatelessWidget {
 
     List<int> itemsPerOrder = cartItemsPerOrderToList();
     var listCounter = 0;
-    /*Widget timeWidget(int index) {
+    Widget timeWidget(int index) {
       var outputDate = DateTime.now().toString();
       if (index < getCartHistoryList.length) {
         DateTime parseDate = DateFormat("yyyy-mm-dd HH:mm:ss")
@@ -50,7 +51,7 @@ class CartHistory extends StatelessWidget {
         outputDate = outputFormat.format(inputDate);
       }
       return BigText(text: outputDate);
-    }*/
+    }
 
     return Scaffold(
         body: Column(
@@ -74,8 +75,8 @@ class CartHistory extends StatelessWidget {
             ],
           ),
         ),
-        GetBuilder<CartConroller>(builder: (_cartConroller) {
-          return _cartConroller.getCartHistoryList().isNotEmpty
+        GetBuilder<CartConroller>(builder: (cartConroller) {
+          return cartConroller.getCartHistoryList().isNotEmpty
               ? Expanded(
                   child: Container(
                     margin: EdgeInsets.only(
@@ -95,10 +96,7 @@ class CartHistory extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  BigText(
-                                      text: getCartHistoryList[listCounter]
-                                          .time!),
-                                  // timeWidget(listCounter),
+                                  timeWidget(listCounter),
                                   SizedBox(
                                     height: Dimensions.height10,
                                   ),
@@ -171,7 +169,6 @@ class CartHistory extends StatelessWidget {
                                                       if (getCartHistoryList[j]
                                                               .time ==
                                                           orderTime[i]) {
-                                                        // print("My order time is ${orderTime[i]}");
                                                         moreOrder.putIfAbsent(
                                                             getCartHistoryList[j]
                                                                 .id!,
