@@ -46,10 +46,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //Popular Food
         GetBuilder<PopularProductConroller>(builder: (popularProducts) {
           return popularProducts.isLoaded
               ? Container(
-                  color: Colors.redAccent,
                   height: Dimensions.pageView,
                   child: PageView.builder(
                       controller: pageController,
@@ -63,6 +63,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   color: AppColors.mainColor,
                 );
         }),
+        //Dot Indicator
         GetBuilder<PopularProductConroller>(builder: (popularProducts) {
           return DotsIndicator(
               dotsCount: popularProducts.popularProductList.isEmpty
@@ -78,6 +79,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         SizedBox(
           height: Dimensions.height30,
         ),
+
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
@@ -97,6 +99,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           ),
         ),
+        //Recommended Food
         GetBuilder<RecommendedProductConroller>(builder: (recommendedProduct) {
           return recommendedProduct.isLoaded
               ? ListView.builder(
